@@ -36,17 +36,35 @@ public class Student {
             System.out.print("Enter course to enroll (Q to quit): ");
             Scanner in = new Scanner(System.in);
             String course = in.nextLine();
-            if(!course.equals("Q")) {
-                courses = courses + "\n" + course;
+            if(!course.equals("Q") && !course.equals("q")) {
+                courses = courses + "\n   " + course;
                 tuitionBalance = tuitionBalance + costOfCourse;
             } else {
                 break;
             }
         } while (1 != 0);
-
-        System.out.println("ENROLLED IN: " + courses);
-        System.out.println("TUITION BALANCE: $" + tuitionBalance);
     }
 
-    public String getStudentID() { return studentID; }
+    public void viewBalance() {
+        System.out.println("Your balance is: $" + tuitionBalance);
+    }
+
+    public void payTuition() {
+        viewBalance();
+        System.out.print("Enter your payment: $");
+        Scanner in = new Scanner(System.in);
+        int payment = in.nextInt();
+        tuitionBalance = tuitionBalance - payment;
+        System.out.println("Thank you of your payment of $" + payment);
+        viewBalance();
+    }
+
+    public String showInfo() {
+        return "Student Name: " + firstName + " " + lastName +
+                "\nStudent Grade Level: " + gradeYear +
+                "\nStudent ID: " + studentID +
+                "\nCourses Enrolled: " + courses +
+                "\nStudent Balance: $" + tuitionBalance;
+    }
+
 }
